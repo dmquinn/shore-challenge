@@ -5,12 +5,12 @@ import { FC } from "react";
 
 const BasicLayout: FC = () => {
   return (
-    <div className="flex">
+    <div className="flex flex-row min-h-screen">
       <Sidebar />
-      <div>
+      <main className="main flex flex-col flex-grow">
         <Header />
         <Contacts users={[]} />
-      </div>
+      </main>
     </div>
   );
 };

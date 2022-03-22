@@ -20,12 +20,12 @@ const Content: FC<UserProps> = () => {
   }, []);
   console.log(users);
   return (
-    <div className="p-10 bg-greyBg h-screen">
-      <div className="p-2 bg-white">
-        <div className="flex w-100">
-          <SearchBar />
-          <AddButton />
-        </div>
+    <div className="p-10 bg-grayBg h-screen">
+      <div className="flex mb-3">
+        <SearchBar />
+        <AddButton />
+      </div>
+      <div className="p-2 bg-white border border-mainBorder">
         <Userlist users={users} />
       </div>
     </div>
