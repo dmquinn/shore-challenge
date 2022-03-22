@@ -11,6 +11,7 @@ module.exports = {
       searchGray: "#ebecee",
       green: "#49cc99",
       mainBorder: "#e7e3e3",
+      black: "black",
     },
   },
   plugins: [],

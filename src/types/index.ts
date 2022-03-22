@@ -3,5 +3,7 @@ export type UserType = {
     email: string,
     first_name: string,
     id: string,
-    last_name: string
+    last_name: string,
+    department: string,
+    money: string
 }
