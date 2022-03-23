@@ -162,7 +162,10 @@ const Modal: FC<ModalProps> = ({ modalIsOpen, setModalIsOpen, user }) => {
                   </label>
                 </div>
                 <div className="flex justify-end mt-2">
-                  <button className="p-2 px-4 border border-mainBorder rounded mr-2">
+                  <button
+                    className="p-2 px-4 border border-mainBorder rounded mr-2"
+                    onClick={() => setModalIsOpen(false)}
+                  >
                     Cancel
                   </button>
                   <button className="p-2 px-5 bg-green rounded text-white">

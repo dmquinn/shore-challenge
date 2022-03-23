@@ -46,8 +46,7 @@ const allUsers: FC<UserProps> = ({ users, searchedUsers, setUsers }) => {
                       />
                     </td>
                     <td>
-                      {first_name}
-                      {last_name}
+                      {first_name} {last_name}
                     </td>
                     <td>{department}</td>
                     <td>{email}</td>
