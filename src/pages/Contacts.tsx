@@ -21,7 +21,7 @@ const Content: FC<UserProps> = () => {
         return {
           department:
             departments[Math.floor(Math.random() * departments.length)],
-          money: (Math.floor(Math.random() * 60000) + 1).toLocaleString(
+          contribution: (Math.floor(Math.random() * 60000) + 1).toLocaleString(
             "de-DE",
             {
               minimumFractionDigits: 2,

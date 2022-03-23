@@ -5,5 +5,5 @@ export type UserType = {
     id: string,
     last_name: string,
     department: string,
-    money: string
+    contribution: string
 }

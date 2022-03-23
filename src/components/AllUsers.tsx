@@ -10,10 +10,10 @@ const allUsers: FC<UserProps> = ({ users }) => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [userToEdit, setUserToEdit] = useState<UserType>();
-  const handleClick = (e: any) => {
-    console.log(e.target.value);
-    setUserToEdit(e.target);
+  const handleClick = (data: any) => {
+    console.log(data);
     setModalIsOpen(!modalIsOpen);
+    setUserToEdit(data);
   };
 
   return (
@@ -27,13 +27,13 @@ const allUsers: FC<UserProps> = ({ users }) => {
             email,
             avatar,
             department,
-            money,
+            contribution,
           } = user;
           return (
             <tbody key={id}>
               <tr
-                className="border border-mainBorder"
-                onClick={(e) => handleClick(e)}
+                className="border border-mainBorder cursor-pointer hover:bg-grayBg"
+                onClick={() => handleClick(user)}
               >
                 <td>
                   <img src={avatar} className="rounded-full h-20 p-2" alt="" />
@@ -44,7 +44,7 @@ const allUsers: FC<UserProps> = ({ users }) => {
                 </td>
                 <td>{department}</td>
                 <td>{email}</td>
-                <td>{money} €</td>
+                <td>{contribution} €</td>
               </tr>
             </tbody>
           );
@@ -53,7 +53,7 @@ const allUsers: FC<UserProps> = ({ users }) => {
       <Modal
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
-        userToEdit={userToEdit}
+        user={userToEdit}
       />
     </>
   );
