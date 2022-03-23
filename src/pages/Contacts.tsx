@@ -9,8 +9,10 @@ interface UserProps {
 }
 
 const Content: FC<UserProps> = () => {
-  const [users, setUsers] = useState([]);
-  const departments = ["Sales", "Marketing", "Support"];
+  const [users, setUsers] = useState<UserType[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchedArray, setSearchedArray] = useState<UserType[]>([]);
+  const departments = ["Sales", "Marketing", "Support", "IT"];
 
   const fetcher = async () => {
     const res = await fetch("https://reqres.in/api/users/");
@@ -40,11 +42,20 @@ const Content: FC<UserProps> = () => {
   return (
     <div className="p-10 bg-grayBg h-screen">
       <div className="flex mb-3">
-        <SearchBar />
+        <SearchBar
+          users={users}
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
+          setSearchedArray={setSearchedArray}
+        />
         <AddButton />
       </div>
       <div className="p-2 bg-white border border-mainBorder">
-        <AllUsers users={users} />
+        <AllUsers
+          users={users}
+          searchedUsers={searchedArray}
+          setUsers={setUsers}
+        />
       </div>
     </div>
   );

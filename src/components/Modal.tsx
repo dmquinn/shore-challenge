@@ -130,6 +130,7 @@ const Modal: FC<ModalProps> = ({ modalIsOpen, setModalIsOpen, user }) => {
                       <option className="p-4">Department</option>
                       <option className="p-4">Marketing</option>
                       <option className="p-4">Sales</option>
+                      <option className="p-4">IT</option>
                       <option className="p-4">Support out</option>
                     </select>
                   </div>
