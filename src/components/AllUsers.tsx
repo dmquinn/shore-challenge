@@ -1,4 +1,4 @@
-import { FC, SetStateAction, useState } from "react";
+import { FC, SetStateAction, useEffect, useState } from "react";
 import { UserType } from "../types";
 import Modal from "./Modal";
 interface UserProps {
@@ -9,82 +9,44 @@ interface UserProps {
 const AllUsers: FC<UserProps> = ({ users, searchedUsers }) => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [userToEdit, setUserToEdit] = useState<UserType>();
+  const [usersToDisplay, setUsersToDisplay] = useState<UserType[]>([]);
   const handleClick = (data: SetStateAction<UserType | undefined>) => {
     setModalIsOpen(!modalIsOpen);
     setUserToEdit(data);
   };
+  useEffect(() => {
+    searchedUsers.length
+      ? setUsersToDisplay(searchedUsers)
+      : setUsersToDisplay(users);
+  }, [searchedUsers, users]);
 
   return (
     <>
       <table className="table-auto w-full">
-        {!searchedUsers.length
-          ? users.map((user) => {
-              const {
-                id,
-                first_name,
-                last_name,
-                email,
-                avatar,
-                department,
-                contribution,
-              } = user;
-              return (
-                <tbody key={id}>
-                  <tr
-                    className="border border-mainBorder cursor-pointer hover:bg-grayBg"
-                    onClick={() => handleClick(user)}
-                  >
-                    <td>
-                      <img
-                        src={avatar}
-                        className="rounded-full h-20 p-2"
-                        alt=""
-                      />
-                    </td>
-                    <td>
-                      {first_name} {last_name}
-                    </td>
-                    <td>{department}</td>
-                    <td>{email}</td>
-                    <td>{contribution} €</td>
-                  </tr>
-                </tbody>
-              );
-            })
-          : searchedUsers.map((user) => {
-              const {
-                id,
-                first_name,
-                last_name,
-                email,
-                avatar,
-                department,
-                contribution,
-              } = user;
-              return (
-                <tbody key={id}>
-                  <tr
-                    className="border border-mainBorder cursor-pointer hover:bg-grayBg"
-                    onClick={() => handleClick(user)}
-                  >
-                    <td>
-                      <img
-                        src={avatar}
-                        className="rounded-full h-20 p-2"
-                        alt=""
-                      />
-                    </td>
-                    <td>
-                      {first_name}
-                      {last_name}
-                    </td>
-                    <td>{department}</td>
-                    <td>{email}</td>
-                    <td>{contribution} €</td>
-                  </tr>
-                </tbody>
-              );
-            })}
+        {usersToDisplay.map((user) => {
+          return (
+            <tbody key={user.id}>
+              <tr
+                className="border border-mainBorder cursor-pointer hover:bg-grayBg"
+                onClick={() => handleClick(user)}
+              >
+                <td>
+                  <img
+                    src={user.avatar}
+                    className="rounded-full h-20 p-2"
+                    alt=""
+                  />
+                </td>
+                <td>
+                  {user.first_name} {user.last_name}
+                </td>
+                <td>{user.department}</td>
+                <td>{user.email}</td>
+                <td>{user.contribution} €</td>
+              </tr>
+            </tbody>
+          );
+        })}
       </table>
       <Modal
         modalIsOpen={modalIsOpen}

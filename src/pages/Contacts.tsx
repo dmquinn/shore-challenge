@@ -12,6 +12,7 @@ const Content: FC<UserProps> = () => {
   const [users, setUsers] = useState<UserType[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchedArray, setSearchedArray] = useState<UserType[]>([]);
+
   const departments = ["Sales", "Marketing", "Support", "IT"];
   const genders = ["male", "female", "other"];
 
@@ -19,6 +20,7 @@ const Content: FC<UserProps> = () => {
     const res = await fetch("https://reqres.in/api/users/");
     const json = await res.json();
     const userResult = json.data;
+
     setUsers(
       userResult.map((user: any) => {
         return {

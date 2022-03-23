@@ -5,6 +5,7 @@ export type UserType = {
     id: string,
     last_name: string,
     department: string,
-    contribution: string
-    gender: string
+    contribution: string,
+    gender: string,
+    active: boolean
 }
