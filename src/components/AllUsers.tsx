@@ -19,7 +19,6 @@ const AllUsers: FC<UserProps> = ({ users, searchedUsers }) => {
       ? setUsersToDisplay(searchedUsers)
       : setUsersToDisplay(users);
   }, [searchedUsers, users]);
-
   return (
     <>
       <table className="table-auto w-full">
@@ -31,11 +30,16 @@ const AllUsers: FC<UserProps> = ({ users, searchedUsers }) => {
                 onClick={() => handleClick(user)}
               >
                 <td>
-                  <img
-                    src={user.avatar}
-                    className="rounded-full h-20 p-2"
-                    alt=""
-                  />
+                  <div className="w-20 h-20 rounded-full p-2">
+                    <img
+                      src={user.avatar}
+                      className="object-cover rounded-full self-center"
+                      alt=""
+                    />
+                    {user.isActive && (
+                      <div className="h-3 w-3 bg-green text-green rounded-full absolute -mt-5 ml-14" />
+                    )}
+                  </div>
                 </td>
                 <td>
                   {user.first_name} {user.last_name}

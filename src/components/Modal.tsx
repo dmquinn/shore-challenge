@@ -13,7 +13,7 @@ const Modal: FC<ModalProps> = ({ modalIsOpen, setModalIsOpen, user }) => {
   return (
     <>
       {modalIsOpen && (
-        <div className="py-12 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 bg-black bg-opacity-60">
+        <div className="fixed py-12 transition duration-150 ease-in-out z-10  top-0 right-0 bottom-0 left-0 bg-black bg-opacity-60">
           <div className="container mx-auto w-11/12 md:w-2/3 max-w-lg opacity-100">
             <div className="relative py-8 px-5 bg-white opacity-100 rounded-md">
               <div className="mb-5 font-bold p-3 flex justify-between border-b border-mainBorder">
@@ -27,13 +27,7 @@ const Modal: FC<ModalProps> = ({ modalIsOpen, setModalIsOpen, user }) => {
                   onClick={() => setModalIsOpen(false)}
                 />
               </div>
-              <UpdateContactForm
-                setModalIsOpen={function (
-                  value: SetStateAction<boolean>
-                ): void {
-                  throw new Error("Function not implemented.");
-                }}
-              />
+              <UpdateContactForm setModalIsOpen={setModalIsOpen} />
             </div>
           </div>
         </div>

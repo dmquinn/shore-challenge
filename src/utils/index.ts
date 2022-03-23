@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export const getSearchResults = (array: any[], input: string) => {
   const newArray = array.filter((item) => {
     return (

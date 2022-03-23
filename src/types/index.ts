@@ -7,5 +7,5 @@ export type UserType = {
     department: string,
     contribution: string,
     gender: string,
-    active: boolean
+    isActive: boolean
 }

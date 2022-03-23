@@ -1,11 +1,4 @@
-import {
-  Dispatch,
-  FC,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
 
 type FormProps = {
   setModalIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -20,29 +13,45 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
     active: false,
     contribution: "",
   });
+  const [resultStatus, setResultStatus] = useState<string | undefined>(
+    undefined
+  );
 
   const radioButtons = ["male", "female", "other"];
-
-  useEffect(() => {
-    console.log("form", formData);
-  }, [formData]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    return fetch("https://reqres.in/api/users", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          return response;
-        } else {
-          console.log("Somthing went wrong");
-        }
-      })
-      .catch((err) => err);
+    try {
+      const response = await fetch("https://reqres.in/api/users", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.status >= 200 && response.status < 300) {
+        console.log("data", data, response);
+        setResultStatus("success");
+        setTimeout(() => {
+          setModalIsOpen(false);
+        }, 2000);
+        return data;
+      }
+    } catch (err) {
+      setResultStatus("error");
+      setTimeout(() => {
+        setModalIsOpen(false);
+      }, 2000);
+
+      console.log(err);
+    }
   };
+
+  if (resultStatus === "success") {
+    return <div className="px-3">Great! User was updated successfully</div>;
+  }
+  if (resultStatus === "error") {
+    return <div className="px-3">Oops! Something went wrong!</div>;
+  }
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -58,6 +67,7 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
             onChange={(e) =>
               setFormData({ ...formData, firstName: e.target.value })
             }
+            required
           />
         </div>
         <div className="w-full md:w-1/2 px-3">
@@ -72,6 +82,7 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
             onChange={(e) =>
               setFormData({ ...formData, lastName: e.target.value })
             }
+            required
           />
         </div>
       </div>
@@ -93,6 +104,7 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, gender: e.target.value })
                     }
+                    required
                   />
                   <label
                     className="form-check-label inline-block"
@@ -116,6 +128,7 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
           type="email"
           placeholder="example@email.com"
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          required
         />
       </div>
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -126,16 +139,16 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
           <select
             id="dropdownDefault"
             data-dropdown-toggle="dropdown"
-            className="form-check-input mx-3 mt-2 px-12 text-textGray border border-mainBorder focus:outline-none rounded px-4 py-3.5 text-center items-start text-start"
+            className="form-check-input mx-3 mt-2 px-12 text-textGray border border-mainBorder focus:outline-none rounded px-4 py-3.5 text-center justify-center w-100"
             onChange={(e) =>
               setFormData({ ...formData, department: e.target.value })
             }
           >
-            <option className="p-4">Department</option>
-            <option className="p-4">Marketing</option>
-            <option className="p-4">Sales</option>
-            <option className="p-4">IT</option>
-            <option className="p-4">Support out</option>
+            <option className="w-100">Department</option>
+            <option className="w-100">Marketing</option>
+            <option className="w-100">Sales</option>
+            <option className="w-100">IT</option>
+            <option className="w-100">Support</option>
           </select>
         </div>
 
@@ -151,6 +164,7 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
             onChange={(e) =>
               setFormData({ ...formData, contribution: e.target.value })
             }
+            required
           />
         </div>
       </div>

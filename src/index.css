@@ -11,3 +11,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Roboto", sans-serif;
 }
+@media (max-width: 680px) {
+  td {
+    display: block;
+    text-align: center !important;
+  }
+  td div {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

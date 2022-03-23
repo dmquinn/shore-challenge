@@ -24,6 +24,7 @@ const Content: FC<UserProps> = () => {
     setUsers(
       userResult.map((user: any) => {
         return {
+          isActive: Math.random() < 0.5,
           gender: genders[Math.floor(Math.random() * genders.length)],
           department:
             departments[Math.floor(Math.random() * departments.length)],
@@ -54,7 +55,7 @@ const Content: FC<UserProps> = () => {
         />
         <AddButton />
       </div>
-      <div className="p-2 bg-white border border-mainBorder">
+      <div className="p-2 max-w-100 bg-white border border-mainBorder">
         <AllUsers users={users} searchedUsers={searchedArray} />
       </div>
     </div>

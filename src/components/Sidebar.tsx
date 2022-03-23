@@ -25,7 +25,6 @@ const Sidebar: FC = () => {
   ];
   const handleClick = (e: any) => {
     setActive(e);
-    console.log(e);
   };
   return (
     <div>
