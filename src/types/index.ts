@@ -6,4 +6,5 @@ export type UserType = {
     last_name: string,
     department: string,
     contribution: string
+    gender: string
 }

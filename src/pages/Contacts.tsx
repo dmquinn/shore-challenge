@@ -13,6 +13,7 @@ const Content: FC<UserProps> = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchedArray, setSearchedArray] = useState<UserType[]>([]);
   const departments = ["Sales", "Marketing", "Support", "IT"];
+  const genders = ["male", "female", "other"];
 
   const fetcher = async () => {
     const res = await fetch("https://reqres.in/api/users/");
@@ -21,6 +22,7 @@ const Content: FC<UserProps> = () => {
     setUsers(
       userResult.map((user: any) => {
         return {
+          gender: genders[Math.floor(Math.random() * genders.length)],
           department:
             departments[Math.floor(Math.random() * departments.length)],
           contribution: (Math.floor(Math.random() * 60000) + 1).toLocaleString(
@@ -51,11 +53,7 @@ const Content: FC<UserProps> = () => {
         <AddButton />
       </div>
       <div className="p-2 bg-white border border-mainBorder">
-        <AllUsers
-          users={users}
-          searchedUsers={searchedArray}
-          setUsers={setUsers}
-        />
+        <AllUsers users={users} searchedUsers={searchedArray} />
       </div>
     </div>
   );

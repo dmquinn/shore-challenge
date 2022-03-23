@@ -1,22 +1,18 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { FC, SetStateAction, useState } from "react";
 import { UserType } from "../types";
 import Modal from "./Modal";
 interface UserProps {
   users: UserType[];
   searchedUsers: UserType[];
-  setUsers: Dispatch<SetStateAction<UserType[]>>;
 }
 
-const allUsers: FC<UserProps> = ({ users, searchedUsers, setUsers }) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const AllUsers: FC<UserProps> = ({ users, searchedUsers }) => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [userToEdit, setUserToEdit] = useState<UserType>();
   const handleClick = (data: SetStateAction<UserType | undefined>) => {
     setModalIsOpen(!modalIsOpen);
     setUserToEdit(data);
   };
-  // eslint-disable-next-line react-hooks/rules-of-hooks
 
   return (
     <>
@@ -99,4 +95,4 @@ const allUsers: FC<UserProps> = ({ users, searchedUsers, setUsers }) => {
   );
 };
 
-export default allUsers;
+export default AllUsers;
