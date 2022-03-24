@@ -24,10 +24,11 @@ const Content: FC<UserProps> = () => {
     setUsers(
       userResult.map((user: any) => {
         return {
-          isActive: Math.random() < 0.5,
+          isActive: Math.random() < 0.5, // 50/50 chance of isActive
           gender: genders[Math.floor(Math.random() * genders.length)],
           department:
             departments[Math.floor(Math.random() * departments.length)],
+          // up to 60000 EUR contribution, toLocaleString formats in German Currency format
           contribution: (Math.floor(Math.random() * 60000) + 1).toLocaleString(
             "de-DE",
             {

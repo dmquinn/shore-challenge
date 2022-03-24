@@ -1,4 +1,5 @@
 import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
+import CurrencyInput from "react-currency-input-field";
 
 type FormProps = {
   setModalIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -156,15 +157,16 @@ const UpdateContact: FC<FormProps> = ({ setModalIsOpen }) => {
           <label className="p-3" htmlFor="contribution">
             Contribution:
           </label>
-          <input
+
+          <CurrencyInput
+            intlConfig={{ locale: "de-DE", currency: "EUR" }}
             className="mt-2 border border-mainBorder rounded py-3 px-4 focus:outline-none"
             id="contribution"
-            type="number"
-            placeholder="e.g. 4.870,65 €"
+            placeholder="e.g. 4.807,30"
+            decimalsLimit={2}
             onChange={(e) =>
               setFormData({ ...formData, contribution: e.target.value })
             }
-            required
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-export const getSearchResults = (array: any[], input: string) => {
+const getSearchResults = (array, input) => {
   const newArray = array.filter((item) => {
     return (
       item.first_name.toUpperCase().includes(input.toUpperCase()) ||
@@ -7,3 +7,7 @@ export const getSearchResults = (array: any[], input: string) => {
   });
   return newArray;
 };
+
+test("Function returns an array", () => {
+  expect(getSearchResults(["r", "e"], "hello")).toHaveProperty("");
+});
