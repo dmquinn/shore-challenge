@@ -5,13 +5,13 @@
 Run locally
 To run this project locally, follow these steps.
 
-1. Clone the project locally, change into the directory, and install the dependencies:
+# 1. Clone the project locally, change into the directory, and install the dependencies:
 ```
 git clone https://github.com/dmquinn/shore-challenge.git
 
 cd shorechallenge
 ```
-install using NPM or Yarn
+install packages using NPM or Yarn
 ```
 npm install
 ```
@@ -19,8 +19,7 @@ or
 ```
 yarn add
 ```
-2.
-Start the app
+# 2. Start the app
 ```
 npm run dev
 ```
