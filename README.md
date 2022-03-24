@@ -2,6 +2,15 @@
 
 <h4>This was a technical challenge for a prospective employer</h4>
 
+<h4>Tech Stack Used:</h4>
+<ul>
+  <li>React</li>
+  <li>Typescript</li>
+  <li>TailwindCSS</li>
+  <li>Jest</li>
+  <li>React Currency Input Field</li>
+</ul>
+
 Run locally
 To run this project locally, follow these steps.
 
